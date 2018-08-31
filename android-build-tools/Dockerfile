@@ -24,12 +24,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install gcc g++ gcc-multilib g++-m
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install ccache
 RUN ccache -M 1G
 
-RUN git clone https://github.com/kelp404/node-in-android
-
 RUN echo "Downloading NDK" >&2 && \
     wget $NDK_URL && \
     echo "Decompressing NDK" >&2 && \
     bash -c "7z x $NDK_FILENAME | grep -vE '^Extracting|^$'; exit \${PIPESTATUS[0]}" && \
     rm $NDK_FILENAME && \
     mv $NDK_VERSION ndk
-RUN android-gcc-toolchain which gcc
