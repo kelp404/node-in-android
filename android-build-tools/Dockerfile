@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 ENV PATH=$PATH:/root/ndk/prebuilt/linux-x86_64/bin:/root/ndk:/root/node-in-android/android-build-tools
 ENV NDK=/root/ndk
-ENV NDK_VERSION=android-ndk-r16b
+ENV NDK_VERSION=android-ndk-r17b
 ENV NDK_FILENAME=$NDK_VERSION\-linux-x86_64.zip
 ENV NDK_URL=https://dl.google.com/android/repository/$NDK_FILENAME
 ENV USE_CCACHE=0
