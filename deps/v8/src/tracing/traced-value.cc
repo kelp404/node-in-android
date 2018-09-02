@@ -75,7 +75,9 @@ TracedValue::~TracedValue() {
 void TracedValue::SetInteger(const char* name, int value) {
   DCHECK_CURRENT_CONTAINER_IS(kStackTypeDict);
   WriteName(name);
-  data_ += std::to_string(value);
+  std::ostringstream sstr;
+  sstr << value;
+  data_ += sstr.str();
 }
 
 void TracedValue::SetDouble(const char* name, double value) {
@@ -116,7 +118,9 @@ void TracedValue::BeginArray(const char* name) {
 void TracedValue::AppendInteger(int value) {
   DCHECK_CURRENT_CONTAINER_IS(kStackTypeArray);
   WriteComma();
-  data_ += std::to_string(value);
+  std::ostringstream sstr;
+  sstr << value;
+  data_ += sstr.str();
 }
 
 void TracedValue::AppendDouble(double value) {
