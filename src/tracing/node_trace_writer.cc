@@ -72,8 +72,12 @@ void NodeTraceWriter::OpenNewFileForStreaming() {
   // Evaluate a JS-style template string, it accepts the values ${pid} and
   // ${rotation}
   std::string filepath(log_file_pattern_);
-  replace_substring(&filepath, "${pid}", std::to_string(uv_os_getpid()));
-  replace_substring(&filepath, "${rotation}", std::to_string(file_num_));
+  std::ostringstream uv_os_pid;
+  std::ostringstream file_num_string;
+  uv_os_pid << uv_os_getpid();
+  file_num_string << file_num_;
+  replace_substring(&filepath, "${pid}", uv_os_pid.str());
+  replace_substring(&filepath, "${rotation}", file_num_string.str());
 
   fd_ = uv_fs_open(tracing_loop_, &req, filepath.c_str(),
       O_CREAT | O_WRONLY | O_TRUNC, 0644, nullptr);
