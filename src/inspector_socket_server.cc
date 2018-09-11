@@ -394,7 +394,9 @@ bool InspectorSocketServer::Start() {
   hints.ai_flags = AI_NUMERICSERV;
   hints.ai_socktype = SOCK_STREAM;
   uv_getaddrinfo_t req;
-  const std::string port_string = std::to_string(port_);
+  std::ostringstream port_ss;
+  port_ss << port_;
+  const std::string port_string = port_ss.str();
   int err = uv_getaddrinfo(loop_, &req, nullptr, host_.c_str(),
                            port_string.c_str(), &hints);
   if (err < 0) {
