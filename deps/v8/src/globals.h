@@ -14,6 +14,7 @@
 #include "src/base/flags.h"
 #include "src/base/logging.h"
 #include "src/base/macros.h"
+#include "src/std-polyfill.h"
 
 #ifdef V8_OS_WIN
 
